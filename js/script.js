@@ -1,7 +1,14 @@
-$( "#kittyClick1, #kittyClick2" ).click(function() {
-	var counter = $('#TextBox').val();
+$( "#kittyClick1" ).click(function() {
+	var counter = $('#TextBox1').val();
             counter++ ;
-            $('#TextBox').val(counter);
+            $('#TextBox1').val(counter);
+
+});
+
+$( "#kittyClick2" ).click(function() {
+	var counter = $('#TextBox2').val();
+            counter++ ;
+            $('#TextBox2').val(counter);
 
 });
 
