@@ -4,13 +4,13 @@
 	<title>Cat Clicker Original</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-<body>
+<body onload="increaseKittyCounter();">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
 				<h3 id="catNameElem1">Hello my name is </h3>
-				<input type="image" id='kittyClick1' src="img/kitty.jpg" value="+" />
-				<h4>Score is: <input type="text" name="TextBox1" id="TextBox1" value="0" /></h4>
+				<input type="image" id='kittyClick1' src="img/kitty.jpg" value="+" " />
+				<h4 id="TextBox1">Score is: <span id="countValue1">0</></h4>
 			</div>
 			<div class="col-md-6">
 				<h3 id="catNameElem2">Hello my name is </h3>
