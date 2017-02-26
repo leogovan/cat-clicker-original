@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Cat Clicker Original</title>
+	<title>Cat Clicker Premium</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
-<body onload="increaseKittyCounter();">
+<body onload="increaseKittyCounter()">
 	<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Cat Clicker Premium</h1>
+		</div>
+	</div>
 		<div class="row">
 			<div class="col-md-6">
-				<h3 id="catNameElem1">Hello my name is </h3>
-				<input type="image" id='kittyClick1' src="img/kitty.jpg" value="+" " />
-				<h4 id="TextBox1">Score is: <span id="countValue1">0</></h4>
+				<h2>List of Cat Names:</h2>
+				<h3>(Click on a cat name to select the kitty you want!)</h3>
+				<ul></ul>
 			</div>
 			<div class="col-md-6">
-				<h3 id="catNameElem2">Hello my name is </h3>
-				<input type="image" id='kittyClick2' src="img/kitty-friend.jpg" value="+" />
-				<h4>Score is: <input type="text" name="TextBox2" id="TextBox2" value="0" /></h4>
+				<h2>Cat Display Area:</h2>
+				<h3>Hello, my name is <span id="name">Dave</span>.</h3>
+				<h4>Click my picture and watch my score go up!</h4>
+				<input type="image" name="kittyImage" src="img/kitty-1.jpg" class="img-responsive img-rounded"/>
+				<h5>Click score is: <span id="score">Nothing to show here!</span></h5>
 			</div>
 		</div>
 	</div>
-	<script src="js/jquery-3.1.1.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>
