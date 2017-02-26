@@ -71,19 +71,19 @@ function listClickFunc(clicked_id) {
 	});	
 };
 
+var counter = 0;
+
 // Increases the score for clicking a cat
 
-function increaseKittyCounter(){
+function increaseKittyCounter(i){
 	// grabbing image and set initial counter value
 	var kittyImage = document.querySelector("input");
-	var counter = 0;
-	
 	// register the click event against the collected image
 	kittyImage.onclick = function (){
 		// increase the counter value on each click
 		counter++;
 		// write the value to the page
 		document.querySelector("#score").innerHTML = counter;
-		
+		i.clickScore = counter;
 	};
 };
