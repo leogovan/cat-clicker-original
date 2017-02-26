@@ -74,6 +74,7 @@ function listClickFunc(clicked_id) {
 var counter = 0;
 
 // Increases the score for clicking a cat
+// Also tracks score for individual cats
 
 function increaseKittyCounter(i){
 	// grabbing image and set initial counter value
@@ -84,6 +85,7 @@ function increaseKittyCounter(i){
 		counter++;
 		// write the value to the page
 		document.querySelector("#score").innerHTML = counter;
+		// Update a given cat's clickScore
 		i.clickScore = counter;
 	};
 };
