@@ -58,11 +58,15 @@ function initKittyList() {
 // Execute the list
 initKittyList();
 
+
+var currentCat = null;
 // Click cat name to update name, photo and score
 // Has already collected the clicked element id
 function listClickFunc(clicked_id) {
 	// loop through kittyList
 	kittyList.forEach(function(i){
+		currentCat = i;
+		console.log("I am currentCat: " + i);
 		if (clicked_id === i.name){
 			document.querySelector("#name").innerHTML = i.name;
 			document.querySelector("input").setAttribute("src", i.photo);
@@ -71,21 +75,20 @@ function listClickFunc(clicked_id) {
 	});	
 };
 
-var counter = 0;
-
 // Increases the score for clicking a cat
 // Also tracks score for individual cats
-
-function increaseKittyCounter(i){
+function increaseKittyCounter(){
 	// grabbing image and set initial counter value
 	var kittyImage = document.querySelector("input");
+
 	// register the click event against the collected image
 	kittyImage.onclick = function (){
 		// increase the counter value on each click
-		counter++;
+		currentCat.clickScore++;
+		console.log("I am clickScore: " + currentCat.clickScore);
 		// write the value to the page
-		document.querySelector("#score").innerHTML = counter;
+		document.querySelector("#score").innerHTML = currentCat.clickScore;
 		// Update a given cat's clickScore
-		i.clickScore = counter;
+		//kittyOne.clickScore = currentCat.clickScore;
 	};
 };
