@@ -59,15 +59,14 @@ function initKittyList() {
 initKittyList();
 
 
-var currentCat = null;
+var currentCat = kittyList[0];
 // Click cat name to update name, photo and score
 // Has already collected the clicked element id
 function listClickFunc(clicked_id) {
 	// loop through kittyList
 	kittyList.forEach(function(i){
-		currentCat = i;
-		console.log("I am currentCat: " + i);
 		if (clicked_id === i.name){
+			currentCat = i;
 			document.querySelector("#name").innerHTML = i.name;
 			document.querySelector("input").setAttribute("src", i.photo);
 			document.querySelector("#score").innerHTML = i.clickScore;
