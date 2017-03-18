@@ -7,9 +7,11 @@
 window.addEventListener('load', 
 	function() {
   	// Instatiate the obects
-  	octopus.newCat();
+  	octopus.makeKitties(5);
 	// Execute the render of the list on the page
 	view.initKittyList();
+	view.listClickFunc();
+	view.increaseKittyCounter();
 
 }, false);
 
@@ -18,30 +20,32 @@ var model = {
 	// Array of cat names
 	catNamesList: ["Dave", "Steve", "Tim", "Eustace", "Alan"], 
 	// Array of cat photos
-	catPhotosList: ["img/kitty-1.jpg", "img/kitty-2.jpg", "img/kitty-3.jpg", "img/kitty-4.jpg", "img/kitty-5.jpg"]
+	catPhotosList: ["img/kitty-1.jpg", "img/kitty-2.jpg", "img/kitty-3.jpg", "img/kitty-4.jpg", "img/kitty-5.jpg"],
+
 };
 
 // ------------- OCTOPUS ---------------
 
 var octopus = {
+	// Place to store list of kitty objects
+	kittyList: [],
 	// Cat object constructor
 	kittyObject: function (kittyNumber) {
-		var kittyIndex = kittyNumber - 1;
+		var kittyIndex = kittyNumber;
 		this.index = kittyIndex;
 		this.name = model.catNamesList[kittyIndex];
 		this.photo = model.catPhotosList[kittyIndex];
 		this.clickScore = 0;
 	},
 	// Instantiate all the cats
-	newCat: function(){
-		var kittyOne = new kittyObject(1);
-		var kittyTwo = new kittyObject(2);
-		var kittyThree = new kittyObject(3);
-		var kittyFour = new kittyObject(4);
-		var kittyFive = new kittyObject(5);
+	newCat: function(number){
+		return new this.kittyObject(number); // 'this' refers to 'octopus'
 	},
-	// Place to store list of kitty objects
-	kittyList: [kittyOne, kittyTwo, kittyThree, kittyFour, kittyFive],
+	makeKitties: function(number) {
+		for (var i = 0; i < number; i++) {
+			this.kittyList.push(this.newCat(i));
+		}
+	}
 };
 
 // ------------- VIEW ---------------
@@ -56,18 +60,18 @@ var view = {
 			// sets id attribute value - used for comparison later
 			li.setAttribute("id", i.name);
 			// sets onclick attribute, also passes through the element's id attribute value
-			li.setAttribute("onclick", "listClickFunc(this.id)");
+			li.setAttribute("onclick", "view.listClickFunc(this.id)");
 		});
 	},
 
 	// Place to store the current displayed cat
-	currentCat: kittyList[0],
+	currentCat: octopus.kittyList[0],
 
 	// Click cat name to update name, photo and score
 	// Has already collected the clicked element id
 	listClickFunc: function(clicked_id) {
 		// loop through kittyList
-		kittyList.forEach(function(i){
+		octopus.kittyList.forEach(function(i){
 			if (clicked_id === i.name){
 				currentCat = i;
 				document.querySelector("#name").innerHTML = i.name;
@@ -85,7 +89,7 @@ var view = {
 		// register the click event against the collected image
 		kittyImage.onclick = function (){
 			// increase the counter value on each click
-			currentCat.clickScore++;
+			this.currentCat.clickScore++;
 			// write the value to the page
 			document.querySelector("#score").innerHTML = currentCat.clickScore;
 			// Update a given cat's clickScore
