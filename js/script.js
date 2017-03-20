@@ -13,8 +13,6 @@ var model = {
 	catNamesList: ["Dave", "Steve", "Tim", "Eustace", "Alan"], 
 	// Array of cat photos
 	catPhotosList: ["img/kitty-1.jpg", "img/kitty-2.jpg", "img/kitty-3.jpg", "img/kitty-4.jpg", "img/kitty-5.jpg"],
-	// Place to store the current displayed cat
-	currentCat: null
 };
 
 // ------------- OCTOPUS ---------------
@@ -22,13 +20,15 @@ var model = {
 var octopus = {
 	init: function(){
 		this.makeKitties(5);
-		model.currentCat = this.kittyList[0];
+		this.currentCat = this.kittyList[0];
 		view.initKittyList();
 		view.listClickFunc();
 		view.increaseKittyCounter();
 	},
 	// Place to store list of kitty objects
 	kittyList: [],
+	// Place to store the current displayed cat
+	currentCat: null,
 	// Cat object constructor
 	kittyObject: function (kittyNumber) {
 		var kittyIndex = kittyNumber;
@@ -73,7 +73,7 @@ var view = {
 		// loop through kittyList
 		octopus.kittyList.forEach(function(i){
 			if (clicked_id === i.name){
-				model.currentCat = i;
+				octopus.currentCat = i;
 				document.querySelector("#name").innerHTML = i.name;
 				document.querySelector("input").setAttribute("src", i.photo);
 				document.querySelector("#score").innerHTML = i.clickScore;
@@ -89,9 +89,9 @@ var view = {
 		// register the click event against the collected image
 		kittyImage.onclick = function (){
 			// increase the counter value on each click
-			model.currentCat.clickScore++;
+			octopus.currentCat.clickScore++;
 			// write the value to the page
-			document.querySelector("#score").innerHTML = model.currentCat.clickScore;
+			document.querySelector("#score").innerHTML = octopus.currentCat.clickScore;
 			// Update a given cat's clickScore
 		};
 	}
