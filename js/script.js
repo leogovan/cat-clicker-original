@@ -3,11 +3,7 @@
 window.addEventListener('load', 
 	function() {
   	// Instatiate the obects
-  	octopus.makeKitties(5);
-	// Execute the render of the list on the page
-	view.initKittyList();
-	view.listClickFunc();
-	view.increaseKittyCounter();
+  	octopus.init();
 
 }, false);
 
@@ -24,11 +20,13 @@ var model = {
 // ------------- OCTOPUS ---------------
 
 var octopus = {
-	/*
 	init: function(){
-		makeKitties(5);
+		this.makeKitties(5);
 		model.currentCat = this.kittyList[0];
-	},*/
+		view.initKittyList();
+		view.listClickFunc();
+		view.increaseKittyCounter();
+	},
 	// Place to store list of kitty objects
 	kittyList: [],
 	// Cat object constructor
@@ -64,6 +62,8 @@ var view = {
 			// sets onclick attribute, also passes through the element's id attribute value
 			li.setAttribute("onclick", "view.listClickFunc(this.id)");
 		});
+		document.querySelector("#name").innerHTML = octopus.kittyList[0].name;
+		document.querySelector("input").setAttribute("src", octopus.kittyList[0].photo);
 	},
 
 	// Click cat name to update name, photo and score
