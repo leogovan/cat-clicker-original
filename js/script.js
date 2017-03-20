@@ -62,6 +62,7 @@ var view = {
 			// sets onclick attribute, also passes through the element's id attribute value
 			li.setAttribute("onclick", "view.listClickFunc(this.id)");
 		});
+		// set the initial cat name and photo to 1st in list
 		document.querySelector("#name").innerHTML = octopus.kittyList[0].name;
 		document.querySelector("input").setAttribute("src", octopus.kittyList[0].photo);
 	},
